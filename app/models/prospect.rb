@@ -6,7 +6,7 @@ class Prospect < ActiveRecord::Base
             
             prospect_hash = row.to_hash
             prospect = Prospect.where(id: prospect_hash["id"])
-            
+
             if prospect.count == 1
                 prospect.first.update_attributes(prospect_hash)
             else

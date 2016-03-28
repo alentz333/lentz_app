@@ -7,4 +7,5 @@ class ProspectsController < ApplicationController
     Prospect.import(params[:file])
     redirect_to root_url, notice: "Prospects imported."
   end
+  
 end

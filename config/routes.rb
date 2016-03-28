@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+  get '/import' => 'pages#import'
+
   resources :prospects do
       collection { post :import }
   end
   
   root to: "prospects#index"
+
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

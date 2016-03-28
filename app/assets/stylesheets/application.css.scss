@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+ 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.panel-group {
+    margin-bottom: 0px;
+}
+
+body { 
+    padding-top: 50px; 
+}
+
+.navbar-inverse {
+    background-color: gray;
+}
