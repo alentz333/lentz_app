@@ -1,7 +1,22 @@
-<%= flash[:notice] %>
+<div class= "row">
+  <div class= "container-fluid">
+    <h3>Import a CSV File</h3>
+    <div class="form-group">
+      <%= form_tag import_prospects_path, multipart: true do %>
+        <%= file_field_tag :file %></br>
+        <%= submit_tag "Import CSV", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <h3>Website Checker</h3>
+    <div class="form-group">
+      <%= form_tag import_prospects_path, multipart: true do %>
+        <%= file_field_tag :file_website %></br>
+        <%= submit_tag "Import CSV", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h3>Import a CSV File</h3>
-<%= form_tag import_prospects_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import CSV" %>
-<% end %>
+
+
+

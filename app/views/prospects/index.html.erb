@@ -1,44 +1,95 @@
-<%= flash[:notice] %>
-<% @companies = Prospect.all.group_by { |prospect| prospect.company } %>
-<% @companies.each do |key, value| %>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#<%= key %>" aria-expanded="true" aria-controls="<%= key %>">
-          <%= key %>
-        </a>
-      </h4>
+<div class= "row">
+  <div class= "container-fluid">
+    <div class="btn-group" data-toggle="buttons">
+      <label id= "green" class="btn btn-success">
+        <input type="radio" name="options" id="option1" autocomplete="off"> Green
+      </label>
+      <label id= "yellow" class="btn btn-warning">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Yellow
+      </label>
+      <label id= "blue" class="btn btn-info">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Blue
+      </label>
+      <label id= "red" class="btn btn-danger">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Red
+      </label>
     </div>
-    <div id="<%= key %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= key %>">
-        <div class="list-group">
-          <table class="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <!--<th>Id</th>-->
-                <th>Name</th>
-                <th>Email</th>
-                <th>LinkedIn</th>
-                <th>Company</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @companies[key].each do |prospect| %>
+  </div>
+</div>
+<div class= "row">
+  <% @companies = Prospect.all.group_by { |prospect| prospect.company } %>
+  <% @companies.each do |key, value| %>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#<%= key.downcase.tr(" ", "_") %>" aria-expanded="true" aria-controls="<%= key %>">
+            <%= key %>
+          </a>
+        </h4>
+      </div>
+      <div id="<%= key.downcase.tr(" ", "_") %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= key.downcase.tr(" ", "_") %>">
+          <div class="list-group">
+            <table class="table table-hover table-bordered">
+              <thead>
                 <tr>
-                  <!--<td><%= prospect.id %></td>-->
-                  <td><%= prospect.name %></td>
-                  <td><%= prospect.email %></td>
-                  <td><%= prospect.linkedin %></td>
-                  <td><%= prospect.company %></td>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>LinkedIn</th>
+                  <th>Company</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @companies[key].each do |prospect| %>
+                  <tr>
+                    <td><%= prospect.id %></td>
+                    <td><%= prospect.name %></td>
+                    <td><%= prospect.email %></td>
+                    <td><%= prospect.linkedin %></td>
+                    <td><%= prospect.company %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+  <% end %>
+</div>
+
+<div class= "row"></br>
+  <div class= "container-fluid">
+    <%= link_to 'Delete all Records', destroy_path, method: :delete, class: "btn btn-danger" %>
   </div>
-<% end %>
+</div>
+
+<script>
+/*  $("tr").click(function() {
+    if ($("#green").hasClass("active")) {
+      $(this).removeClass.toggleClass("success");
+    }
+    if ($("#yellow").hasClass("active")) {
+      $(this).removeClass.toggleClass("warning");
+    }
+  });*/
+  $("tr").click(function() {
+  $(this).removeClass();
+  if ($("#green").hasClass("active")){
+    $(this).addClass("success");
+  }
+  if ($("#yellow").hasClass("active")){
+    $(this).addClass("warning");
+  }
+  if ($("#blue").hasClass("active")){
+    $(this).addClass("info");
+  }
+  if ($("#red").hasClass("active")){
+    $(this).addClass("danger");
+  }
+});
+</script>
 
 
 

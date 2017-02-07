@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'pages/home'
   get '/import' => 'pages#import'
+  
+  match '/destroy', to: 'prospects#destroy', via: :delete
 
   resources :prospects do
       collection { post :import }

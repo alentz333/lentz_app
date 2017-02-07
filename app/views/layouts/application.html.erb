@@ -19,16 +19,18 @@
                     </a>
                 </li>
                 <li>
-                    <%= link_to "Dashboard", root_path %>
+                    <a href="/"><i class="fa fa-tachometer"></i>&nbsp; Dashboard</a>
+                    <!--<%= link_to "Dashboard", root_path %>-->
                 </li>
                 <li>
-                    <%= link_to "Import", import_path %>
+                    <a href="/import"><i class="fa fa-upload"></i>&nbsp; Import</a>
+                   <!-- <%= link_to "Import", import_path %>-->
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-cog"></i>&nbsp; Settings</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp; Contact</a>
                 </li>
             </ul>
         </div>
@@ -48,6 +50,13 @@
                                 </div>
                             </div>
                         </nav>
+                        <div class="container-fluid">
+                            <div id="flash">
+                                <% flash.each do |key, value| %>
+                                    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+                                <% end %>
+                            </div>
+                        </div>
                         <%= yield %>
                         
                     </div>
@@ -71,6 +80,14 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+        $('#flash').fadeOut();
+      }, 3000);
+    })
     </script>
 
 </body>

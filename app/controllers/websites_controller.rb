@@ -1,10 +1,10 @@
-class ProspectsController < ApplicationController
+class WebsitesController < ApplicationController
   def index
-    @prospects = Prospect.all
+    @websites = Website.all
   end
 
   def import
-    Prospect.import(params[:file])
+    Website.import(params[:file_website])
     redirect_to root_url, notice: "Prospects imported."
   end
   
